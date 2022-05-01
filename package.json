@@ -1,0 +1,24 @@
+{
+  "name": "preschollSong-backend",
+  "version": "1.0.0",
+  "description": "Preschool Song Libary",
+  "main": "index.js",
+  "repository": "git@github.com:lizkavalski/PreschoolSong-backend.git",
+  "author": "lizkavalski <lizkavalski@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "base-64": "^1.0.0",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "eslint": "^8.5.0",
+    "express": "^4.17.2",
+    "jest": "^27.4.5",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.1",
+    "sequelize-cli": "^6.3.0",
+    "sqlite3": "^5.0.2",
+    "supertest": "^6.1.6"
+  }
+}
