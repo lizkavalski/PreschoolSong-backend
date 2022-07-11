@@ -1,4 +1,4 @@
-const CategoryModel = (sequelize, DataTypes) => sequelize.define('animal', {
+const CategoryModel = (sequelize, DataTypes) => sequelize.define('theme', {
   category: { type: DataTypes.STRING, required: true },
   title: { type: DataTypes.STRING, required: true },
   image: { type: DataTypes.STRING, required: true },
