@@ -12,12 +12,12 @@ const DATABASE_URL = process.env.DATABASE_URL || 'sqlite:memory:';
 const sequelize = new Sequelize(DATABASE_URL);
 
 const users = userModel(sequelize, DataTypes);
-const animal = CategoryModel(sequelize, DataTypes);
-const todo = SongModel(sequelize, DataTypes);
+const theme = CategoryModel(sequelize, DataTypes);
+const song = SongModel(sequelize, DataTypes);
 
 module.exports = {
   db: sequelize,
   users: new Collection(users),
-  animals: new Collection(category),
+  theme: new Collection(theme),
   song: new Collection(song)
 };
