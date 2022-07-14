@@ -35,7 +35,7 @@ async function handleGetOne(req, res) {
 
 async function handleCreate(req, res) {
   let obj = req.body;
-  Video.getVideoID(req.body.url)
+  // Video.getVideoID(req.body.url)
   console.log('this the object:', obj)
   let newRecord = await req.model.create(obj);
   let message = {message:'"“bippity boppity boo.”- Fairy Godmother (Cinderella.)', newRecord}
