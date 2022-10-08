@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const modelsMiddleware = require('../middleware/model.js');
-const Video = require('../middleware/video/video.js')
+// const Video = require('../middleware/video/video.js')
 router.param('model', modelsMiddleware);
 
 router.get('/', datapage);

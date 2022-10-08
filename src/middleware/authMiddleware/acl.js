@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = (capability) => {
+module.exports = (capabilitie) => {
 
   return (req, res, next) => {
 
     try {
-      if (req.user.capabilities.includes(capability)) {
+      if (req.user.capabilities.includes(capabilitie)) {
         next();
       }
       else {
