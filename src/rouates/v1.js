@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const modelsMiddleware = require('../middleware/model.js');
-
+// const Video = require('../middleware/video/video.js')
 router.param('model', modelsMiddleware);
 
 router.get('/', datapage);
@@ -35,6 +35,8 @@ async function handleGetOne(req, res) {
 
 async function handleCreate(req, res) {
   let obj = req.body;
+  // Video.getVideoID(req.body.url)
+  console.log('this the object:', obj)
   let newRecord = await req.model.create(obj);
   let message = {message:'"“bippity boppity boo.”- Fairy Godmother (Cinderella.)', newRecord}
 
