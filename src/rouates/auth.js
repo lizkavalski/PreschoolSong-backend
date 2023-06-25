@@ -1,43 +1,48 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const authRouter = express.Router();
 
-const { users } = require('../models/');
-const basicAuth = require('../middleware/authMiddleware/basic')
-const bearerAuth = require('../middleware/authMiddleware/bearer')
-const permissions = require('../middleware/authMiddleware/acl')
+const { users } = require("../models/");
+const basicAuth = require("../middleware/authMiddleware/basic");
+const bearerAuth = require("../middleware/authMiddleware/bearer");
+const permissions = require("../middleware/authMiddleware/acl");
 
-authRouter.post('/signup', async (req, res, next) => {
+authRouter.post("/signup", async (req, res, next) => {
   try {
     const userRecord = await users.create(req.body);
     const output = {
       user: userRecord,
-      token: userRecord.token
+      token: userRecord.token,
     };
     res.status(201).json(output);
   } catch (e) {
-    next(e.message)
+    next(e.message);
   }
 });
 
-authRouter.post('/signin', basicAuth, (req, res, next) => {
+authRouter.post("/signin", basicAuth, (req, res, next) => {
   const user = {
     user: req.user,
-    token: req.user.token
+    token: req.user.token,
   };
-  console.log('this the user:', user)
+  console.log("this the user:", user);
   res.status(200).json(user);
 });
 
-authRouter.get('/users', bearerAuth, permissions('read'), async (req, res, next) => {
-  const userRecords = await users.get();
-  const list = userRecords.map(user => user.username);
-  res.status(200).json(list);
-});
+authRouter.get(
+  "/users",
+  bearerAuth,
+  permissions("read"),
+  async (req, res, next) => {
+    const userRecords = await users.get();
+    const list = userRecords.map((user) => user.username);
+    res.status(200).json(list);
+  }
+);
 
-authRouter.get('/secret', bearerAuth, async (req, res, next) => {
-  res.status(200).send('Welcome to the secret area')
+authRouter.get("/secret", bearerAuth, async (req, res, next) => {
+  res.status(200).send("Welcome to the secret area");
 });
 
 module.exports = authRouter;

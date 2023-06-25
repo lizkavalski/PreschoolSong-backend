@@ -1,4 +1,4 @@
-const dataModules = require('../models');
+const dataModules = require("../models");
 
 module.exports = (req, res, next) => {
   const modelName = req.params.model;
@@ -6,6 +6,6 @@ module.exports = (req, res, next) => {
     req.model = dataModules[modelName];
     next();
   } else {
-    next('Invalid Model');
+    next("Invalid Model");
   }
 };

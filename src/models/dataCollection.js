@@ -1,6 +1,5 @@
-'use strict';
+"use strict";
 class DataCollection {
-
   constructor(model) {
     this.model = model;
   }
@@ -8,8 +7,7 @@ class DataCollection {
   get(id) {
     if (id) {
       return this.model.findOne({ where: { id } });
-    }
-    else {
+    } else {
       return this.model.findAll({});
     }
   }
@@ -19,14 +17,14 @@ class DataCollection {
   }
 
   update(id, data) {
-    return this.model.findOne({ where: { id }})
-      .then(record => record.update(data));
+    return this.model
+      .findOne({ where: { id } })
+      .then((record) => record.update(data));
   }
 
   delete(id) {
     return this.model.destroy({ where: { id } });
   }
-
 }
 
 module.exports = DataCollection;
