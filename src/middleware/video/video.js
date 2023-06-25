@@ -1,9 +1,9 @@
 "use strict";
+require('dotenv').config();
 const {google}= require('googleapis');
 
-const apiKey= process.env.KEY
-
-
+const apiKey= process.env.API_KEY
+console.log(apiKey)
 const youtube = google.youtube({
   version: 'v3',
   auth: apiKey
@@ -16,7 +16,7 @@ function getVideoID(str) {
 }
 
 
-async function testYouTubeAPI() {
+async function YouTubeAPI() {
   try {
     // Make API requests here
     const response = await youtube.videos.list({
@@ -30,5 +30,5 @@ async function testYouTubeAPI() {
   }
 }
 // getVideoID('https://www.youtube.com/watch?v=n61ULEU7CO0')
-testYouTubeAPI();
+YouTubeAPI();
 // module.exports = Video;
