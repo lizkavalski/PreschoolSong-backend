@@ -3,10 +3,11 @@
 const express = require("express");
 const router = express.Router();
 const modelsMiddleware = require("../middleware/model.js");
-// const Video = require('../middleware/video/video.js')
+const {youTubeAPI} = require('../middleware/video/video.js')
 router.param("model", modelsMiddleware);
 
 router.get("/", datapage);
+router.get("/test", youtubeData)
 router.get("/:model", handleGetAll);
 router.get("/:model/:id", handleGetOne);
 router.post("/:model", handleCreate);
@@ -20,6 +21,11 @@ async function datapage(req, res) {
   res.status(200).json(message);
 }
 
+async function youtubeData(req,res){
+let message= await youTubeAPI(req.body.url)
+console.log('this is message:', message)
+res.status(200).json(message)
+}
 async function handleGetAll(req, res) {
   let allRecords = await req.model.get();
   let message = {
@@ -43,7 +49,7 @@ async function handleGetOne(req, res) {
 
 async function handleCreate(req, res) {
   let obj = req.body;
-  // Video.getVideoID(req.body.url)
+  YouTubeAPI(req.body.url)
   console.log("this the object:", obj);
   let newRecord = await req.model.create(obj);
   let message = {
