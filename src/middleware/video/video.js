@@ -3,7 +3,7 @@ require('dotenv').config();
 const {google}= require('googleapis');
 
 const apiKey= process.env.API_KEY
-console.log(apiKey)
+
 const youtube = google.youtube({
   version: 'v3',
   auth: apiKey
@@ -20,12 +20,26 @@ async function youTubeAPI(url){
   try {
     // Make API requests here
     const response = await youtube.videos.list({
-      part: 'contentDetails,snippet',
+      part: 'snippet',
       id: getVideoID(url),
       maxResults: 10
     });
-    // console.log(response.data.items);
-    return response.data.items
+  //  console.log(response.data);
+   // Process the search results
+   const items = response.data.items;
+   const videoDetails = items.map(item => {
+    const videoTitle = item.snippet.title;
+    const channelName = item.snippet.channelTitle;
+    const thumbnails = item.snippet.thumbnails.default.url;
+
+    return {
+      videoTitle,
+      channelName,
+      thumbnails
+    };
+  });
+
+  return videoDetails;
   } catch (error) {
     console.error('Error testing YouTube API: ', error);
   }

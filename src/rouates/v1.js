@@ -23,7 +23,6 @@ async function datapage(req, res) {
 
 async function youtubeData(req,res){
 let message= await youTubeAPI(req.body.url)
-console.log('this is message:', message)
 res.status(200).json(message)
 }
 async function handleGetAll(req, res) {
@@ -48,16 +47,30 @@ async function handleGetOne(req, res) {
 }
 
 async function handleCreate(req, res) {
-  let obj = req.body;
-  YouTubeAPI(req.body.url)
-  console.log("this the object:", obj);
-  let newRecord = await req.model.create(obj);
-  let message = {
-    message: '"“bippity boppity boo.”- Fairy Godmother (Cinderella.)',
-    newRecord,
-  };
+  try {
+    let dataAPI = await youTubeAPI(req.body.url)
+    let userInput = req.body
+    let apiInput=dataAPI[0]
+    let newRecord = await req.model.create({
+      title:apiInput.videoTitle,
+      by: apiInput.channelName,
+      category: userInput.category,
+      url: userInput.url,
+      image:apiInput.thumbnails
 
-  res.status(201).json(message);
+    });
+    let message = {
+      message: '"“bippity boppity boo.”- Fairy Godmother (Cinderella.)',
+      newRecord,
+    };
+    res.status(201).json(message);
+  }catch (error) {
+    console.error('Error creating and storing new data:', error);
+    res.status(500).json(error);
+    throw error;
+  }
+
+
 }
 
 async function handleUpdate(req, res) {
