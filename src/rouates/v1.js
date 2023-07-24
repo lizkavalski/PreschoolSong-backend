@@ -3,10 +3,11 @@
 const express = require("express");
 const router = express.Router();
 const modelsMiddleware = require("../middleware/model.js");
-// const Video = require('../middleware/video/video.js')
+const {youTubeAPI} = require('../middleware/video/video.js')
 router.param("model", modelsMiddleware);
 
 router.get("/", datapage);
+router.get("/test", youtubeData)
 router.get("/:model", handleGetAll);
 router.get("/:model/:id", handleGetOne);
 router.post("/:model", handleCreate);
@@ -20,6 +21,10 @@ async function datapage(req, res) {
   res.status(200).json(message);
 }
 
+async function youtubeData(req,res){
+let message= await youTubeAPI(req.body.url)
+res.status(200).json(message)
+}
 async function handleGetAll(req, res) {
   let allRecords = await req.model.get();
   let message = {
@@ -42,16 +47,30 @@ async function handleGetOne(req, res) {
 }
 
 async function handleCreate(req, res) {
-  let obj = req.body;
-  // Video.getVideoID(req.body.url)
-  console.log("this the object:", obj);
-  let newRecord = await req.model.create(obj);
-  let message = {
-    message: '"“bippity boppity boo.”- Fairy Godmother (Cinderella.)',
-    newRecord,
-  };
+  try {
+    let dataAPI = await youTubeAPI(req.body.url)
+    let userInput = req.body
+    let apiInput=dataAPI[0]
+    let newRecord = await req.model.create({
+      title:apiInput.videoTitle,
+      by: apiInput.channelName,
+      category: userInput.category,
+      url: userInput.url,
+      image:apiInput.thumbnails
 
-  res.status(201).json(message);
+    });
+    let message = {
+      message: '"“bippity boppity boo.”- Fairy Godmother (Cinderella.)',
+      newRecord,
+    };
+    res.status(201).json(message);
+  }catch (error) {
+    console.error('Error creating and storing new data:', error);
+    res.status(500).json(error);
+    throw error;
+  }
+
+
 }
 
 async function handleUpdate(req, res) {
@@ -73,7 +92,7 @@ async function handleDelete(req, res) {
     message: '"Danger Will Robinson"--Robot (Lost in Space)',
     deletedRecord,
   };
-  res.status(200).json(deletedRecord);
+  res.status(200).json(message);
 }
 
 module.exports = router;
