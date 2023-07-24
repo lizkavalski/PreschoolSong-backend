@@ -92,7 +92,7 @@ async function handleDelete(req, res) {
     message: '"Danger Will Robinson"--Robot (Lost in Space)',
     deletedRecord,
   };
-  res.status(200).json(deletedRecord);
+  res.status(200).json(message);
 }
 
 module.exports = router;
