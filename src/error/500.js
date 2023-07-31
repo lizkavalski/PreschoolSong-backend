@@ -8,6 +8,7 @@ module.exports = function (err, req, res, next) {
     status: 500,
     message:
       "“What do you want me to do, dress in drag and do the hula?”- Timon, (The Lion King)",
+    errorMessage:error
   };
-  res.status(500).json(erroeObject, e);
+  res.status(500).json(erroeObject);
 };

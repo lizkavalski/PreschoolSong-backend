@@ -1,48 +1,56 @@
-"use strict";
+const express = require('express');
+const router = express.Router();
+const session = require('express-session');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const ensureAuthenticated = require('../middleware/auth/authmiddle'); // Import the authentication middleware
+const v2rouates=require('./v2')
+const app = express();
 
-const express = require("express");
-const authRouter = express.Router();
+// ... Other configurations and middleware ...
 
-const { users } = require("../models/");
-const basicAuth = require("../middleware/authMiddleware/basic");
-const bearerAuth = require("../middleware/authMiddleware/bearer");
-const permissions = require("../middleware/authMiddleware/acl");
+let secert=process.env.SECRET
+let clientId=process.env.CLIENTID
+let clientSecret= process.env.CLIENTSECRET
+let callback=process.env.CALLBACKURL
+// Configure session
+app.use(session({
+  secret: secert,
+  resave: false,
+  saveUninitialized: true,
+}));
 
-authRouter.post("/signup", async (req, res, next) => {
-  try {
-    const userRecord = await users.create(req.body);
-    const output = {
-      user: userRecord,
-      token: userRecord.token,
-    };
-    res.status(201).json(output);
-  } catch (e) {
-    next(e.message);
-  }
+// Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Configure Google Strategy
+passport.use(new GoogleStrategy({
+  clientID: clientId,
+  clientSecret: clientSecret,
+  callbackURL: callback,
+}, (accessToken, refreshToken, profile, done) => {
+  // You can handle the user profile data here or save it to your database.
+  return done(null, profile);
+}));
+
+// Serialize and deserialize the user to maintain a session
+passport.serializeUser((user, done) => {
+  done(null, user);
 });
 
-authRouter.post("/signin", basicAuth, (req, res, next) => {
-  const user = {
-    user: req.user,
-    token: req.user.token,
-  };
-  console.log("this the user:", user);
-  res.status(200).json(user);
+passport.deserializeUser((user, done) => {
+  done(null, user);
 });
 
-authRouter.get(
-  "/users",
-  bearerAuth,
-  permissions("read"),
-  async (req, res, next) => {
-    const userRecords = await users.get();
-    const list = userRecords.map((user) => user.username);
-    res.status(200).json(list);
-  }
-);
+// ... Define your routes ...
+app.use('/v2',ensureAuthenticated,v2rouates)
+// Protected route example
+// app.get('/dashboard', ensureAuthenticated, (req, res) => {
+//   // This route is protected and can only be accessed by authenticated users.
+//   // You can access the user's profile data from req.user here.
+//   res.send(`Welcome to your dashboard, ${req.user.displayName}!`);
+// });
 
-authRouter.get("/secret", bearerAuth, async (req, res, next) => {
-  res.status(200).send("Welcome to the secret area");
-});
-
-module.exports = authRouter;
+// Start the server
+module.exports = router
