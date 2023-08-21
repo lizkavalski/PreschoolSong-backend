@@ -13,7 +13,6 @@ async function YoutubeHandleCreate(req, res) {
       category: userInput.category,
       url: userInput.url,
       image:apiInput.thumbnails
-
     });
     let message = {
       message: '"“bippity boppity boo.”- Fairy Godmother (Cinderella.)',
@@ -25,8 +24,6 @@ async function YoutubeHandleCreate(req, res) {
     res.status(500).json(error);
     throw error;
   }
-
-
 }
 async function handleCreate(req,res){
   let obj = req.body;
