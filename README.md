@@ -33,7 +33,7 @@ Input for no model __GET__ `/`
 output:
 ```
 {
-	"message": "\"There no place like home\"- Dorothy(Wizard of Oz)"
+  "message": "\"There no place like home\"- Dorothy(Wizard of Oz)"
 }
 ```
 
@@ -42,8 +42,8 @@ Input for theme and song with no data in the database __GET__ `/v1/:model` or `/
 Output 
 ```
 {
-	"message": "\"“Aw, you guys made me ink.”- Pearl (Finding Nemo.)",
-	"allRecords": []
+  "message": "\"“Aw, you guys made me ink.”- Pearl (Finding Nemo.)",
+  "allRecords": []
 }
 ```
 
@@ -52,17 +52,17 @@ With data from __theme__  database __GET__ `/v1/:theme` or `/v2/:theme`
 output: 
 ```
 {
-	"message": "\"“Aw, you guys made me ink.”- Pearl (Finding Nemo.)",
-	"allRecords": [
-		{
-			"id": 1,
-			"category": "greeting",
-			"title": "Hello Songs",
-			"description": "Songs related to greeting such as hello, or good moring",
-			"createdAt": "2023-08-21T22:20:12.200Z",
-			"updatedAt": "2023-08-21T22:20:12.200Z"
-		}
-	]
+  "message": "\"“Aw, you guys made me ink.”- Pearl (Finding Nemo.)",
+  "allRecords": [
+    {
+      "id": 1,
+      "category": "greeting",
+      "title": "Hello Songs",
+      "description": "Songs related to greeting such as hello, or good moring",
+      "createdAt": "2023-08-21T22:20:12.200Z",
+      "updatedAt": "2023-08-21T22:20:12.200Z"
+    }
+  ]
 }
 ```
 To get one record `/v1/theme/:id`, or `/v2/theme/:id`
@@ -70,15 +70,15 @@ To get one record `/v1/theme/:id`, or `/v2/theme/:id`
 Output:
 ```
 {
-	"message": "\"Magic Mirror on the wall, who is the fairest one of all?”- Queen (Snow White and the Seven Drawfs)",
-	"theRecord": {
-		"id": 1,
-		"category": "greeting",
-		"title": "Hello Songs",
-		"description": "Songs related to greeting such as hello, or good moring",
-		"createdAt": "2023-08-21T22:20:12.200Z",
-		"updatedAt": "2023-08-21T22:20:12.200Z"
-	}
+  "message": "\"Magic Mirror on the wall, who is the fairest one of all?”- Queen (Snow White and the Seven Drawfs)",
+  "theRecord": {
+    "id": 1,
+    "category": "greeting",
+    "title": "Hello Songs",
+    "description": "Songs related to greeting such as hello, or good moring",
+    "createdAt": "2023-08-21T22:20:12.200Z",
+    "updatedAt": "2023-08-21T22:20:12.200Z"
+  }
 }
 ```
 
@@ -87,19 +87,19 @@ To look a all data for __song__ data base __GET__ `/v1/song/` or `/v2/song`
 output Example:
 ```
 {
-	"message": "\"“Aw, you guys made me ink.”- Pearl (Finding Nemo.)",
-	"allRecords": [
-		{
-			"id": 1,
-			"title": "How Do We Say Hello - THE KIBOOMERS Preschool Songs - Good Morning Circle Time Song",
-			"by": "The Kiboomers - Kids Music Channel",
-			"category": "Hello Songs",
-			"url": "https://www.youtube.com/watch?v=p3XPRgf4qG4",
-			"image": "https://i.ytimg.com/vi/p3XPRgf4qG4/default.jpg",
-			"createdAt": "2023-08-21T22:28:07.025Z",
-			"updatedAt": "2023-08-21T22:28:07.025Z"
-		}
-	]
+  "message": "\"“Aw, you guys made me ink.”- Pearl (Finding Nemo.)",
+  "allRecords": [
+    {
+      "id": 1,
+      "title": "How Do We Say Hello - THE KIBOOMERS Preschool Songs - Good Morning Circle Time Song",
+      "by": "The Kiboomers - Kids Music Channel",
+      "category": "Hello Songs",
+      "url": "https://www.youtube.com/watch?v=p3XPRgf4qG4",
+      "image": "https://i.ytimg.com/vi/p3XPRgf4qG4/default.jpg",
+      "createdAt": "2023-08-21T22:28:07.025Z",
+      "updatedAt": "2023-08-21T22:28:07.025Z"
+    }
+  ]
 }
 ```
 To look a one data for __song__ data base __GET__ `/v1/song/:id` or `/v2/song/:id`
@@ -107,17 +107,18 @@ To look a one data for __song__ data base __GET__ `/v1/song/:id` or `/v2/song/:i
 Output:
 ```
 {
-	"message": "\"Magic Mirror on the wall, who is the fairest one of all?”- Queen (Snow White and the Seven Drawfs)",
-	"theRecord": {
-		"id": 1,
-		"title": "How Do We Say Hello - THE KIBOOMERS Preschool Songs - Good Morning Circle Time Song",
-		"by": "The Kiboomers - Kids Music Channel",
-		"category": "greeting",
-		"url": "https://www.youtube.com/watch?v=p3XPRgf4qG4",
-		"image": "https://i.ytimg.com/vi/p3XPRgf4qG4/default.jpg",
-		"createdAt": "2023-08-21T22:28:07.025Z",
-		"updatedAt": "2023-08-21T22:28:07.025Z"
-	}
+  "message": "\"Magic Mirror on the wall, who is the fairest one of all?”- Queen (Snow White and the Seven Drawfs)",
+  "theRecord": {
+    "id": 1,
+    "title": "How Do We Say Hello - THE KIBOOMERS Preschool Songs - Good Morning Circle Time Song",
+    "by": "The Kiboomers - Kids Music Channel",
+    "category": "greeting",
+    "url": "https://www.youtube.com/watch?v=p3XPRgf4qG4",
+    "image": "https://i.ytimg.com/vi/p3XPRgf4qG4/default.jpg",
+    "createdAt": "2023-08-21T22:28:07.025Z",
+    "updatedAt": "2023-08-21T22:28:07.025Z"
+  }
+}
 ```
 
 
@@ -156,17 +157,17 @@ Output:
   Output Example:
   ```
   {
-	"message": "\"“bippity boppity boo.”- Fairy Godmother (Cinderella.)",
-	"newRecord": {
-		"id": 1,
-		"title": "How Do We Say Hello - THE KIBOOMERS Preschool Songs - Good Morning Circle Time Song",
-		"by": "The Kiboomers - Kids Music Channel",
-		"category": "greeting",
-		"url": "https://www.youtube.com/watch?v=p3XPRgf4qG4",
-		"image": "https://i.ytimg.com/vi/p3XPRgf4qG4/default.jpg",
-		"updatedAt": "2023-08-21T21:46:58.612Z",
-		"createdAt": "2023-08-21T21:46:58.612Z"
-	}
+  "message": "\"“bippity boppity boo.”- Fairy Godmother (Cinderella.)",
+    "newRecord": {
+      "id": 1,
+      "title": "How Do We Say Hello - THE KIBOOMERS Preschool Songs - Good Morning Circle Time Song",
+      "by": "The Kiboomers - Kids Music Channel",
+      "category": "greeting",
+      "url": "https://www.youtube.com/watch?v=p3XPRgf4qG4",
+      "image": "https://i.ytimg.com/vi/p3XPRgf4qG4/default.jpg",
+      "updatedAt": "2023-08-21T21:46:58.612Z",
+      "createdAt": "2023-08-21T21:46:58.612Z"
+    }
 }
   ```
 #### UPDATE
@@ -174,10 +175,10 @@ Output:
 To update use data  __PUT__ `v1/:model/:id`, or `/v2/:model/:id` and change the information like creating new data. The exception is __songs__ the input can be: title, by(who did it), category, url and image. To tell if the changes took place the output should have a line look like this:
 ```
 {
-	"message": "“Hockety pockety wockety wack! Odds and ends and bric-a-brac!”- Merlin(The Sword in the Stone)",
-	"updatedRecord": {
+  "message": "“Hockety pockety wockety wack! Odds and ends and bric-a-brac!”- Merlin(The Sword in the Stone)",
+  "updatedRecord": {
     updated data
-	}
+  }
 }
 ```
 
