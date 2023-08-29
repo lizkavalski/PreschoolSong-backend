@@ -1,6 +1,7 @@
 # Preschool Song Libary
 
 The back end of the Preschool Libary. The server will fetch information for the YouTube database and save it to a postgres SQL database.
+
 ## .env Requierment
 - DATABASE_URL= link to postgres database
 - PORT= for localhost
@@ -27,7 +28,7 @@ root url- `localhost:----`
 
 There are two routes:`/v1/:model` and `/v2/:model`. The v1 route is the un-authincated and is for local testing, while the v2 route is the authincated routes and used for deployment.
 
-#### READ:
+### READ:
 Input for no model __GET__ `/`
 
 output:
@@ -122,7 +123,7 @@ Output:
 ```
 
 
-#### CREATE
+### CREATE
 
   To create a __theme__ data use __POST__ `/v1/theme` or `/v2/theme` with the require input:
   ```
@@ -170,19 +171,19 @@ Output:
     }
 }
   ```
-#### UPDATE
+### UPDATE
 
 To update use data  __PUT__ `v1/:model/:id`, or `/v2/:model/:id` and change the information like creating new data. The exception is __songs__ the input can be: title, by(who did it), category, url and image. To tell if the changes took place the output should have a line look like this:
 ```
 {
   "message": "“Hockety pockety wockety wack! Odds and ends and bric-a-brac!”- Merlin(The Sword in the Stone)",
   "updatedRecord": {
-    updated data
+    the updated data is in here
   }
 }
 ```
 
-#### Delete
+### Delete
 
 To delete data use __DELETE__ `v1/:model/:id`, or `/v2/:model/:id`, To tell if the changes took place the output should have a line look like this:
 ```
