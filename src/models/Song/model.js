@@ -4,7 +4,8 @@ const SongModel = (sequelize, DataTypes) =>
     by: { type: DataTypes.STRING, required: true },
     category: { type: DataTypes.STRING, required: true },
     url: { type: DataTypes.STRING },
-    image:{type:DataTypes.STRING}
+    image:{type:DataTypes.STRING},
+    videoId:{type:DataTypes.STRING}
   });
 
 module.exports = SongModel;

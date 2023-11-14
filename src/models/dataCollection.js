@@ -4,9 +4,13 @@ class DataCollection {
     this.model = model;
   }
 
-  get(id) {
-    if (id) {
-      return this.model.findOne({ where: { id } });
+  get(idOrConditions) {
+    if (idOrConditions) {
+      if (typeof idOrConditions === 'object') {
+        return this.model.findOne({ where: idOrConditions });
+      } else {
+        return this.model.findOne({ where: { id: idOrConditions } });
+      }
     } else {
       return this.model.findAll({});
     }
