@@ -8,43 +8,39 @@ const acl = require('../auth/aclAuth');
 const { user } = require('../models/index');
 const modelsMiddleware = require("../middleware/model.js");
 const signUp = require("../middleware/auth/signup")
-// const {handleGetAll, handleGetOne} = require('../middleware/CURD/read.js')
-// const {modelCreate}= require('../middleware/CURD/create.js')
+const {handleGetAll, handleGetOne} = require('../middleware/CURD/read.js')
+const {modelCreate}= require('../middleware/CURD/create.js')
 // const {handleUpdate} = require('../middleware/CURD/update.js')
 // const {handleDelete} = require ('../middleware/CURD/delete.js')
 
 router.param("model", modelsMiddleware);
 
-const app = express();
 
-app.use(express.json());
+router.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: true }));
 
-app.post('/signup', signUp);
+router.post('/signup', signUp);
 
-app.post('/login', basic, (req, res) => {
+router.post('/login', basic, (req, res) => {
   res.status(200).json(req.user);
 });
-
-app.get('/users', async (req, res) => {
-  let allUsers = await user.findAll();
+router.get('/users', async (req, res) => {
+  let allUsers = await user.get();
   res.status(200).send(allUsers);
 });
 
 // add routes that will be permission based off role
-app.get('/read', bearer, acl('read'), (req, res) => {
-  res.status(200).send('you have read access');
-});
-app.post('/create', bearer, acl('create'), (req, res) => {
-  res.status(200).send('you have create access');
-});
-app.put('/update', bearer, acl('update'), (req, res) => {
-  res.status(200).send('you have update access');
-});
-app.delete('/delete', bearer, acl('delete'), (req, res) => {
-  res.status(200).send('you have delete access');
-});
+router.get('/:model', handleGetAll, bearer, acl('read'));
+router.post('/:model', modelCreate, bearer, acl('create'));
+//   res.status(200).send('you have create access');
+// });
+// app.put('/update', bearer, acl('update'), (req, res) => {
+//   res.status(200).send('you have update access');
+// });
+// app.delete('/delete', bearer, acl('delete'), (req, res) => {
+//   res.status(200).send('you have delete access');
+// });
 
 async function datapage(req, res) {
   let message = {
@@ -52,7 +48,6 @@ async function datapage(req, res) {
   };
   res.status(200).json(message);
 }
-module.exports = app;
 // router.get("/", datapage)
 // router.get("/:model", handleGetAll);
 // router.get("/:model/:id", handleGetOne);
@@ -61,4 +56,4 @@ module.exports = app;
 // router.delete("/:model/:id", handleDelete);
 
 
-// module.exports = router;
+module.exports = router;

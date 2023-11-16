@@ -1,4 +1,4 @@
-const { userModel } = require('../models');
+const { user } = require('../models/index');
 
 const bearer = async (req, res, next) => {
   if (!req.headers.authorization)
@@ -6,7 +6,13 @@ const bearer = async (req, res, next) => {
   try {
     const [authType, token] = req.headers.authorization.split(' ');
     if (authType === 'Bearer') {
+      // Access the Sequelize model from the Collection instance
+      const userModel = user.model;
+      
       let validUser = await userModel.authenticateBearer(token);
+
+      console.log("🐝", validUser);
+
       if (validUser) {
         req.user = validUser;
         next();
@@ -23,3 +29,4 @@ const bearer = async (req, res, next) => {
 };
 
 module.exports = bearer;
+

@@ -1,5 +1,3 @@
-"use strict";
-
 const { Sequelize, DataTypes } = require("sequelize");
 const CategoryModel = require("./Category/model");
 const SongModel = require("./Song/model");

@@ -1,6 +1,6 @@
-'use strict';
+const {user} = require("../models/index");
 
-module.exports = (capabilty) => (req, res, next) => {
+const acl = (capabilty) => (req, res, next) => {
   try {
     if (req.user.capabilities.includes(capabilty)) next();
     else next('Access Denied');
@@ -8,3 +8,4 @@ module.exports = (capabilty) => (req, res, next) => {
     next('Invalid Login, (acl middleware)');
   }
 };
+module.exports = acl
