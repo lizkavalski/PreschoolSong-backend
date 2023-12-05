@@ -11,7 +11,7 @@ const basic = async (req, res, next) => {
   try {
     const foundUser = await user.model.findOne({
       where: { username: username },
-      attributes: ['id', 'username', 'password', 'role', 'token'],
+      attributes: ['id', 'username', 'password', 'role', 'token', 'capabilities'],
     });
     
     if (!foundUser) {

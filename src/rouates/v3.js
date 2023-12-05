@@ -31,8 +31,8 @@ router.get('/users', async (req, res) => {
 });
 
 // add routes that will be permission based off role
-router.get('/:model', handleGetAll, bearer, acl('read'));
-router.post('/:model', modelCreate, bearer, acl('create'));
+router.get('/:model',  bearer, acl('read'),handleGetAll,);
+router.post('/:model', bearer, acl('create'),  modelCreate,);
 //   res.status(200).send('you have create access');
 // });
 // app.put('/update', bearer, acl('update'), (req, res) => {
