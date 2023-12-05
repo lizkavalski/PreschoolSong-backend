@@ -11,8 +11,6 @@ const bearer = async (req, res, next) => {
       
       let validUser = await userModel.authenticateBearer(token);
 
-      console.log("🐝", validUser);
-
       if (validUser) {
         req.user = validUser;
         next();
