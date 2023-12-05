@@ -8,6 +8,7 @@ const notFound = require("./error/404.js");
 const oops = require("./error/500.js");
 const v1rouates = require("./rouates/v1.js");
 const v2rouates = require("./rouates/v2.js");
+const v3rouates = require("./rouates/v3.js");
 // const authRouates = require("./rouates/auth.js");
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(passport.session());
 // app.use(authRouates);
 app.use("/v1", v1rouates);
 app.use("/v2", v2rouates);
+app.use("/v3", v3rouates)
 app.use("*", notFound);
 app.use(oops);
 

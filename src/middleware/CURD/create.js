@@ -12,7 +12,8 @@ async function YoutubeHandleCreate(req, res) {
       by: apiInput.channelName,
       category: userInput.category,
       url: userInput.url,
-      image:apiInput.thumbnails
+      image:apiInput.thumbnails,
+      videoId:apiInput.youtubeId
     });
     let message = {
       message: '"“bippity boppity boo.”- Fairy Godmother (Cinderella.)',

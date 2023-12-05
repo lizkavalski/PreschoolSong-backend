@@ -24,18 +24,20 @@ async function youTubeAPI(url){
       id: getVideoID(url),
       maxResults: 10
     });
-  //  console.log(response.data);
+   console.log("line 27",response.data);
    // Process the search results
    const items = response.data.items;
    const videoDetails = items.map(item => {
     const videoTitle = item.snippet.title;
     const channelName = item.snippet.channelTitle;
     const thumbnails = item.snippet.thumbnails.default.url;
+    const youtubeId = item.id
 
     return {
       videoTitle,
       channelName,
-      thumbnails
+      thumbnails,
+      youtubeId
     };
   });
 
@@ -44,6 +46,6 @@ async function youTubeAPI(url){
     console.error('Error testing YouTube API: ', error);
   }
 }
-// getVideoID('https://www.youtube.com/watch?v=n61ULEU7CO0')
+//  getVideoID('https://www.youtube.com/watch?v=n61ULEU7CO0')
 // YouTubeAPI('https://www.youtube.com/watch?v=n61ULEU7CO0');
 module.exports = {youTubeAPI};
