@@ -1,5 +1,6 @@
 "use strict";
-require('dotenv').config();
+const dotenv = require('dotenv')
+dotenv.config();
 const {google}= require('googleapis');
 
 const apiKey= process.env.API_KEY
