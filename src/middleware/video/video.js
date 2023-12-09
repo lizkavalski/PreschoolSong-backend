@@ -1,6 +1,5 @@
 "use strict";
-const dotenv = require('dotenv')
-dotenv.config();
+require('dotenv').config();
 const {google}= require('googleapis');
 
 const apiKey= process.env.API_KEY
@@ -45,6 +44,7 @@ async function youTubeAPI(url){
   return videoDetails;
   } catch (error) {
     console.error('Error testing YouTube API: ', error);
+    throw error
   }
 }
 //  getVideoID('https://www.youtube.com/watch?v=n61ULEU7CO0')
