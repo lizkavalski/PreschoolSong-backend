@@ -7,7 +7,7 @@ const session = require('express-session');
 const notFound = require("./error/404.js");
 const oops = require("./error/500.js");
 const v1rouates = require("./rouates/v1.js");
-const v2rouates = require("./rouates/v2.js");
+// const v2rouates = require("./rouates/v2.js");
 const v3rouates = require("./rouates/v3.js");
 // const authRouates = require("./rouates/auth.js");
 
