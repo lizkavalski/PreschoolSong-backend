@@ -5,7 +5,7 @@ async function handleGetAll(req, res) {
     allRecords,
   };
 
-  res.status(200).json(message); 
+  res.status(201).json(message); 
 }
 async function handleGetOne(req, res) {
   const id = req.params.id;
@@ -15,7 +15,7 @@ async function handleGetOne(req, res) {
       '"Magic Mirror on the wall, who is the fairest one of all?”- Queen (Snow White and the Seven Drawfs)',
     theRecord,
   };
-  res.status(200).json(message);
+  res.status(201).json(message);
 }
 
 module.exports={handleGetAll, handleGetOne}
