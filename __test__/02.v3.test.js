@@ -45,12 +45,43 @@ describe('v3 routes work as expected', () => {
     expect(respond.status).toBe(200);
     expect(respond.body.username).toBe(userName);
   });
+})
+describe("v3 routes for theme", () =>{
   test('Can make a request to theme', async () => {
     let address='/v3/theme'
     let token= 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiaWF0IjoxNzAyMTc3OTc3LCJleHAiOjE3ODg1Nzc5Nzd9.Ot9VCZgmbzWR2Cv7QQujtzU1tMQYvGVZ1HloTg0PvnE'
     const respond = await testRequst.get(address).set('Authorization', token);
     expect(respond.status).toBe(201);
+  }); 
+  test('With a CREATE capability can post to database', async () => {
+    let address='/v3/theme'
+    let data = {
+      category: "test",
+      title: "Test",
+      description: "Songs related to help learn about different emotions from happy to made"
+    }
+    let token= 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiaWF0IjoxNzAyMTc3OTc3LCJleHAiOjE3ODg1Nzc5Nzd9.Ot9VCZgmbzWR2Cv7QQujtzU1tMQYvGVZ1HloTg0PvnE'
+    const respond = ((await testRequst.post(address).send(data).set('Authorization', token)));
+    expect(respond.status).toBe(201);
+  })
+})
+describe("v3 routes for song", () =>{
+  test('Can make a request to song', async () => {
+    let address='/v3/song'
+    let token= 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiaWF0IjoxNzAyMTc3OTc3LCJleHAiOjE3ODg1Nzc5Nzd9.Ot9VCZgmbzWR2Cv7QQujtzU1tMQYvGVZ1HloTg0PvnE'
+    const respond = await testRequst.get(address).set('Authorization', token);
+    expect(respond.status).toBe(201);
   });
+  test('With a CREATE capability can post to database', async () => {
+    let address='/v3/song'
+    let data = {
+      category: "test",	
+      url:"https://www.youtube.com/watch?v=1SGbjbx4cqs"
+    }
+    let token= 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiaWF0IjoxNzAyMTc3OTc3LCJleHAiOjE3ODg1Nzc5Nzd9.Ot9VCZgmbzWR2Cv7QQujtzU1tMQYvGVZ1HloTg0PvnE'
+    const respond = ((await testRequst.post(address).send(data).set('Authorization', token)));
+    expect(respond.status).toBe(201);
+  })
 //  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiaWF0IjoxNzAyMTc3OTc3LCJleHAiOjE3ODg1Nzc5Nzd9.Ot9VCZgmbzWR2Cv7QQujtzU1tMQYvGVZ1HloTg0PvnE
 
 });
