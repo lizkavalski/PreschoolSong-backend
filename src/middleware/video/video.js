@@ -44,6 +44,7 @@ async function youTubeAPI(url){
   return videoDetails;
   } catch (error) {
     console.error('Error testing YouTube API: ', error);
+    throw error
   }
 }
 //  getVideoID('https://www.youtube.com/watch?v=n61ULEU7CO0')

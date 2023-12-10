@@ -19,11 +19,11 @@ app.use(express.json());
 // ... Other configurations and middleware ...
 let secretIngredient= process.env.SECRET
 // Configure session
-app.use(session({
-  secret: secretIngredient,
-  resave: false,
-  saveUninitialized: true,
-}));
+// app.use(session({
+//   secret: secretIngredient,
+//   resave: false,
+//   saveUninitialized: true,
+// }));
 
 // Initialize passport
 // app.use(passport.initialize());

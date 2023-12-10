@@ -3,7 +3,7 @@ const supertest = require("supertest");
 const {server} = require('../src/server');
 const testRequst = supertest(server);
 const {db} = require('../src/models')
-const v1Router = require("../src/rouates/v1");
+// const v1Router = require("../src/rouates/v1");
 
 beforeAll(async () => {
   await db.sync();

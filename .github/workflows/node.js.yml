@@ -1,9 +1,7 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 
-on: [push]
+on:
+  [push]
 
 jobs:
   build:
@@ -11,15 +9,17 @@ jobs:
 
     strategy:
       matrix:
-        # adjust appropriate Node version(s) as necessary. i.e. [18.x] or [16.x, 18.x, 19.x]
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Set up environment variables
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
       - name: npm install, build, and test
         run: |
           npm i
