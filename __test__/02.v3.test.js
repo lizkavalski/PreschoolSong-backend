@@ -25,36 +25,32 @@ describe('v3 routes work as expected', () => {
       expect(results.body.message).toBe('"There no place like home"- Dorothy(Wizard of Oz)');
     })
   })
-  xtest('we can create a new user to get a token', async () => {
+  test('Can create a new user', async () => {
     let address='/v3/signup'
     let data ={
-      username:"admin",
+      username:"Admin",
       password:"1234",
       role:"admin",
     }
     const respond = await testRequst.post(address).send(data);
-    console.log("🐝" ,respond.body);
+    // console.log("🐝" ,respond.body.token);
     expect(respond.status).toEqual(200);
   });
-  xtest('we can create a food with a valid user', async () => {
-    const response = await mockServer
-      .post('/api/v2/food')
-      .set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2OTA2NTIwNTN9.0LGnR1YsblULTli1469gMphXK52EA3ITInZxd5UNkrA'
-      )
-      .send({ name: 'radish', calories: 10, type: 'vegetable' });
-    expect(response.status).toBe(201);
+  test('Can sign in as our user', async () => {
+    let address='/v3/login'
+    let userName='Admin';
+    let pass= '1234';
+    const respond = await testRequst.post(address).auth(userName,pass);
+    console.log("line 44 🐝",respond.body.username);
+    expect(respond.status).toBe(200);
+    expect(respond.body.username).toBe(userName);
   });
-  xtest('we can create a food with a valid user', async () => {
-    const response = await mockServer
-      .get('/api/v2/food')
-      .set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2OTA2NTIwNTN9.0LGnR1YsblULTli1469gMphXK52EA3ITInZxd5UNkrA'
-      );
+  test('Can make a request to theme', async () => {
+    let address='/v3/theme'
+    let token= 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiaWF0IjoxNzAyMTc3OTc3LCJleHAiOjE3ODg1Nzc5Nzd9.Ot9VCZgmbzWR2Cv7QQujtzU1tMQYvGVZ1HloTg0PvnE'
+    const respond = await testRequst.get(address).set('Authorization', token);
+    expect(respond.status).toBe(201);
+  });
+//  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFkbWluIiwiaWF0IjoxNzAyMTc3OTc3LCJleHAiOjE3ODg1Nzc5Nzd9.Ot9VCZgmbzWR2Cv7QQujtzU1tMQYvGVZ1HloTg0PvnE
 
-    expect(response.status).toBe(200);
-    expect(response.body.length).toBe(1);
-  });
 });
