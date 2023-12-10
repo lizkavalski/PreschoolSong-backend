@@ -16,7 +16,6 @@ function getVideoID(str) {
 
 
 async function youTubeAPI(url){
-  console.log('this is the url',url)
   try {
     // Make API requests here
     const response = await youtube.videos.list({
@@ -24,7 +23,6 @@ async function youTubeAPI(url){
       id: getVideoID(url),
       maxResults: 10
     });
-   console.log("line 27",response.data);
    // Process the search results
    const items = response.data.items;
    const videoDetails = items.map(item => {

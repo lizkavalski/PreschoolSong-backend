@@ -3,7 +3,6 @@ const { youTubeAPI } = require('../video/video');
 
 async function YoutubeHandleCreate(req, res) {
   try {
-    console.log(`this the youtube url${req.body.url}`)
     let dataAPI = await youTubeAPI(req.body.url)
     let userInput = req.body
     let apiInput=dataAPI[0]
