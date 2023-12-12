@@ -1,9 +1,7 @@
-
 const supertest = require("supertest");
 const {server} = require('../src/server');
 const testRequst = supertest(server);
 const {db} = require('../src/models')
-// const v1Router = require("../src/rouates/v1");
 
 beforeAll(async () => {
   await db.sync();
@@ -12,7 +10,6 @@ afterAll(async () => {
   await db.drop({});
 });
 
-// Your actual tests
 describe("v1 routes", () => {
 
   it('Should respond with a 404 on an invalid route', () => {

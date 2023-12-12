@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const SECRET = process.env.SECRET;
 // move this to the user.model
 const userModel = (sequelize, DataTypes) => {
