@@ -1,4 +1,5 @@
 # Preschool Song Libary
+![https://github.com/lizkavalski/PreschoolSong-backend/actions](https://github.com/lizkavalski/PreschoolSong-backend/actions/workflows/node.js.yml/badge.svg)
 
 The back end of the Preschool Libary. The server will fetch information for the YouTube database and save it to a postgres SQL database.
 
