@@ -10,13 +10,11 @@ The back end of the Preschool Libary. The server will fetch information for the 
 - PORT= for localhost
 - API_KEY= Youtube API key
 - SECRET= for authencation
-- CLIENTID= Google authencation
-- CLIENTSECRET= Google Authencation
-- CALLBACKURL= Google Authencation
 
 ## Models
 - theme
 - song
+- user
 
 ## To start server
 
@@ -29,7 +27,7 @@ should see an output like this:
 
 root url- `localhost:----`
 
-There are two routes:`/v1/:model` and `/v2/:model`. The v1 route is the un-authincated and is for local testing, while the v2 route is the authincated routes and used for deployment.
+There are two routes:`/v1/:model` and `/v3/:model`. The v1 route is the un-authincated and is for local testing, while the v3 route is the authincated routes and used for deployment.
 
 ### READ:
 Input for no model __GET__ `/`
@@ -41,7 +39,7 @@ output:
 }
 ```
 
-Input for theme and song with no data in the database __GET__ `/v1/:model` or `/v2/:model`
+Input for theme and song with no data in the database __GET__ `/v1/:model` or `/v3/:model`
 
 Output 
 ```
@@ -51,7 +49,7 @@ Output
 }
 ```
 
-With data from __theme__  database __GET__ `/v1/:theme` or `/v2/:theme`
+With data from __theme__  database __GET__ `/v1/:theme` or `/v3/:theme`
 
 output: 
 ```
@@ -69,7 +67,7 @@ output:
   ]
 }
 ```
-To get one record `/v1/theme/:id`, or `/v2/theme/:id`
+To get one record `/v1/theme/:id`, or `/v3/theme/:id`
 
 Output:
 ```
@@ -86,7 +84,7 @@ Output:
 }
 ```
 
-To look a all data for __song__ data base __GET__ `/v1/song/` or `/v2/song`
+To look a all data for __song__ data base __GET__ `/v1/song/` or `/v3/song`
 
 output Example:
 ```
@@ -106,7 +104,7 @@ output Example:
   ]
 }
 ```
-To look a one data for __song__ data base __GET__ `/v1/song/:id` or `/v2/song/:id`
+To look a one data for __song__ data base __GET__ `/v1/song/:id` or `/v3/song/:id`
 
 Output:
 ```
@@ -128,7 +126,7 @@ Output:
 
 ### CREATE
 
-  To create a __theme__ data use __POST__ `/v1/theme` or `/v2/theme` with the require input:
+  To create a __theme__ data use __POST__ `/v1/theme` or `/v3/theme` with the require input:
   ```
   {
     "category":"Name of Category",
@@ -151,7 +149,7 @@ Output:
   }
   ```
 
-  To create a __song__ data use __POST__ `/v1/song` or `/v2/song` with the require input:
+  To create a __song__ data use __POST__ `/v1/song` or `/v3/song` with the require input:
   ```
   {
 	"category":"Name of category",
@@ -176,7 +174,7 @@ Output:
   ```
 ### UPDATE
 
-To update use data  __PUT__ `v1/:model/:id`, or `/v2/:model/:id` and change the information like creating new data. The exception is __songs__ the input can be: title, by(who did it), category, url and image. To tell if the changes took place the output should have a line look like this:
+To update use data  __PUT__ `v1/:model/:id`, or `/v3/:model/:id` and change the information like creating new data. The exception is __songs__ the input can be: title, by(who did it), category, url and image. To tell if the changes took place the output should have a line look like this:
 ```
 {
   "message": "“Hockety pockety wockety wack! Odds and ends and bric-a-brac!”- Merlin(The Sword in the Stone)",
@@ -188,7 +186,7 @@ To update use data  __PUT__ `v1/:model/:id`, or `/v2/:model/:id` and change the 
 
 ### Delete
 
-To delete data use __DELETE__ `v1/:model/:id`, or `/v2/:model/:id`, To tell if the changes took place the output should have a line look like this:
+To delete data use __DELETE__ `v1/:model/:id`, or `/v3/:model/:id`, To tell if the changes took place the output should have a line look like this:
 ```
 {
 	"message": "\"Danger Will Robinson\"--Robot (Lost in Space)",

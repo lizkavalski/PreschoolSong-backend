@@ -2,7 +2,7 @@
 
 const express = require("express");
 const cors= require('cors');
-const session = require('express-session');
+// const session = require('express-session');
 // const passport = require('./auth/passportConfig'); // Import the Passport.js configuration
 // const ensureAuthenticated = require('./auth/authMiddleware'); // Import the authentication middleware
 const notFound = require("./error/404.js");
