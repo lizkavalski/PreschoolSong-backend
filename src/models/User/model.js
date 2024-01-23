@@ -3,7 +3,7 @@ require('dotenv').config();
 const SECRET = process.env.SECRET;
 // move this to the user.model
 const userModel = (sequelize, DataTypes) => {
-  const model = sequelize.define('User', {
+  const model = sequelize.define('user', {
     username: {
       type: DataTypes.STRING,
       allowNull: false,

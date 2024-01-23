@@ -1,6 +1,7 @@
 "use strict";
 
 const express = require("express");
+const cors= require('cors');
 const session = require('express-session');
 // const passport = require('./auth/passportConfig'); // Import the Passport.js configuration
 // const ensureAuthenticated = require('./auth/authMiddleware'); // Import the authentication middleware
@@ -12,7 +13,7 @@ const v3rouates = require("./rouates/v3.js");
 // const authRouates = require("./rouates/auth.js");
 
 const app = express();
-
+app.use(cors())
 app.use(express.json());
 
 
